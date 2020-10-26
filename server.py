@@ -1,4 +1,4 @@
-import socket 
+import socket
 import threading
 
 HEADER = 64
@@ -10,6 +10,7 @@ DISCONNECT_MESSAGE = "!DISCONNECT"
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(ADDR)
+
 
 def handle_client(conn, addr):
     print(f"[NEW CONNECTION] {addr} connected.")
@@ -27,7 +28,7 @@ def handle_client(conn, addr):
             conn.send("Msg received".encode(FORMAT))
 
     conn.close()
-        
+
 
 def start():
     server.listen()
@@ -39,5 +40,6 @@ def start():
         print(f"[ACTIVE CONNECTIONS] {threading.activeCount() - 1}")
 
 
-print("[STARTING] server is starting...")
-start()
+if __name__ == "__main__":
+    print("[STARTING] server is starting...")
+    start()
